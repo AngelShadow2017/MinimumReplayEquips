@@ -41,7 +41,6 @@ namespace Core.UpdateRelative
         private void Update()
         {
             bool canUpdate = _frameLockManager.AllLocksOpen;
-            
             if (!canUpdate)
             {
                 return;
@@ -64,6 +63,7 @@ namespace Core.UpdateRelative
 
         private void FixedUpdate()
         {
+            _frameLockManager.UpdateLocksState();
             bool canUpdate = _frameLockManager.AllLocksOpen;
             if (!canUpdate)
             {
@@ -72,7 +72,6 @@ namespace Core.UpdateRelative
                 {
                     frameUpdateManager.Pause();
                 }
-                _frameLockManager.UpdateLocksState();
                 return;
             }
             else if (!frameUpdateManager.IsActive)
